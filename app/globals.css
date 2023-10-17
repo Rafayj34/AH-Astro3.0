@@ -10,24 +10,28 @@ body {
 
 .dropdown {
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity .3s ease, transform .3s ease;
+  height: 0px;
+  transform: translateY(-10%);
+  padding:0px;
+  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out, height 0.2s ease-in-out, padding 0.2 ease-in-out;
 }
 
-/* Dropdown is visible */
 .dropdown-enter {
   opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  height: 500px;
+  padding:40px;
+  transform: translateY(0%);
 }
 
-/* Dropdown is about to be hidden */
 .dropdown-exit {
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
+  height: 0px;
+  padding:0px;
+  transform: translateY(-10%);
 }
+
+
+
 /* Add appropriate positioning styles to the sub-dropdown */
 .sub-dropdown {
   position: absolute;

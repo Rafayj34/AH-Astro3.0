@@ -2,7 +2,7 @@ const ValueProposition = () => {
   return (
     <div className="my-32 flex flex-col justify-center items-center">
       <div className="flex p-4 ">
-        <div className="flex flex-col gap-5 border-r-[1px] border-secondary ">
+        <div className="flex flex-col border-r-[1px] border-secondary pr-8">
           <h2 className="text-4xl text-center">Why Us?</h2>
           <p className="max-w-3xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde et,
@@ -11,7 +11,7 @@ const ValueProposition = () => {
             facilis.
           </p>
         </div>
-        <div className="flex-col justify-center items-center pl-4">
+        <div className="flex-col justify-center items-center">
             <h3 className="text-gray-600 text-center pb-4">Our Reviews</h3>
             <div className="grid grid-cols-3 ">
             <div className="">

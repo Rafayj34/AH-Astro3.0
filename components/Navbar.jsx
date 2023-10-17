@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { logo, menu, close, arrowUp, arrowdown } from "../public/assets";
+import { logowhite, menu, close, arrowUp, arrowdown } from "../public";
 import { navLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +39,7 @@ const Navbar = () => {
           <div className="flex pl-10">
             <Link href="/">
               {" "}
-              <Image height={60} width={60} alt="Go to home" src={logo} />
+              <Image height={60} width={60} alt="Go to home" src={logowhite} />
             </Link>
             <ul className=" hidden lg:flex  gap-10 lg:gap-12  px-20 items-center ">
               {navLinks.map((link, index) => (
@@ -84,11 +84,10 @@ const Navbar = () => {
       
 
       <div
-     
-        className={`navbar-dropdown flex justify-between  h-[500px] duration-300 text-white w-screen
-        bg-gradient-to-t from-purple-900 to-primary transition-all ease-in-out  
+        className={`dropdown flex justify-center duration-300 text-white w-screen bg-gradient-to-t from-purple-900 to-primary
+         transition-all ease-in-out 
         ${
-            liActive ? "block" : "hidden "
+            liActive === "Services" || liActive === "Universities" ? "dropdown-enter" : "dropdown-exit"
         }`}
       >
         {navLinks.map((link) =>
@@ -98,11 +97,11 @@ const Navbar = () => {
             <>
               {/* <p className="pl-44 pt-10 text-orange-500 font-semibold ">{link.title}</p> */}
 
-              <ul key={link.title} className="ml-32 mt-8">
+              <ul key={link.title} className="flex flex-col">
                 {link.dropdown.map((sublink, index) => (
                   <li
                     key={index}
-                    className="p-2 pr-10 flex justify-between border-r-2"
+                    className={`p-2 pr-20 flex justify-between group hover:bg-white/10 transition-all duration-300 rounded-md ${sublink.title === subLiActive ? "bg-white/10" : ""}`}
                     onMouseEnter={() => setSubLiActive(sublink.title)}
                   >
                     {sublink.href ? (
@@ -114,8 +113,8 @@ const Navbar = () => {
                       <Image
                         src={arrowdown}
                         width={10}
-                        className={`transition-all -rotate-90 mr-5 
-                        ${subLiActive === sublink.title ? "translate-x-2" : ""}`}
+                        className={`transition-all -rotate-90 duration-500 opacity-0 group-hover:opacity-100
+                        ${subLiActive === sublink.title ? "translate-x-10 opacity-100" : ""}`}
                         alt="navbar dropdown arrow"
                       />
                     )}
@@ -125,29 +124,31 @@ const Navbar = () => {
             </>
           ) : null
         )}
-        <div className="absolute left-60 top-28 ml-20">
-          <ul className="grid grid-cols-3 gap-x-3 content-list">
+        <div className= {`ml-8 pl-8 ${liActive === "Services" || liActive === "Universities" ? "border-l-[1px] border-white/10" : ""}  w-[1300px]`}>
+          <ul className="grid grid-cols-3 gap-x-3 content-list ">
             {navLinks.map((link) =>
               Array.isArray(link.dropdown) &&
               link.dropdown.length > 0 &&
               link.title === liActive
-                ? link.dropdown.map((sublink) =>
-                    Array.isArray(sublink.subdropdown) &&
-                    sublink.subdropdown.length > 0
-                      ? sublink.subdropdown.map(
-                          (subsublink, index) =>
-                            sublink.title === subLiActive &&
-                            sublink.subdropdown && (
-                              <Link key={index} href={subsublink.href}>
+                ? link.dropdown.map((subLink) =>
+                    Array.isArray(subLink.subdropdown) &&
+                    subLink.subdropdown.length > 0
+                      ? subLink.subdropdown.map(
+                          (subsubLink, index) => {
+                            
+                          return(
+                            subLink.title === subLiActive &&
+                            subLink.subdropdown && (
+                              <Link key={index} href={subsubLink.href} className=" w-fit">
                                 <li
                                   onClick={handleMouseClickLowerDiv("")}
-                                  className="p-2 hover:text-secondary"
+                                  className={`p-2 hover:text-secondary transition-all w-fit`}
                                 >
-                                  {subsublink.title}
+                                  {subsubLink.title}
                                 </li>
                               </Link>
-                            )
-                        )
+                            ))
+                            })
                       : null
                   )
                 : null
