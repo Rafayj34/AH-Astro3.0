@@ -18,7 +18,7 @@ body {
 
 .dropdown-enter {
   opacity: 1;
-  height: 500px;
+  height: 650px;
   padding:40px;
   transform: translateY(0%);
 }
